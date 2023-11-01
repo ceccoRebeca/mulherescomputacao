@@ -3,6 +3,10 @@ import seaborn as sns
 import streamlit as st
 import numpy as np
 import time
+from Proplan.utils import *
+
+sns.set_theme(style="whitegrid", palette="pastel")
+palette ={"M": "C0", "F": "C1"}
 
 st.set_page_config(layout="wide")
 
@@ -26,8 +30,7 @@ st.header('Output')
 
 
 if add_sidebar == "Resultados do PG":
-    
-    path = "C:\\Users\\USER\\Documents\\GitHub\\mulherescomputacao\\DadosRebeca.csv"
+    path = "C:\\Users\\USER\\Documents\\GitHub\\mulherescomputacao\\Proplan\\DadosRebeca.csv"
     df = pd.read_csv(path)
 
     st.subheader('Selecione um curso')
@@ -43,7 +46,10 @@ if add_sidebar == "Resultados do PG":
      1990, 2022, (1990, 2022))
     st.write('Values:', values)
 
-
+    hist = hist_plot(df[df['NOME_CURSO']== option],
+              'ANO_INGRESSO', 'Ano de Ingreso', 
+              'Histórico de ingressantes - CC', 
+              paleta=palette)
 
 else:
     st.write('WORK IN PROGRESS')
